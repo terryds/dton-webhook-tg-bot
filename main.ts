@@ -25,8 +25,10 @@ Deno.serve(async (req) => {
         const body = await req.json();
         console.log(body)
         console.log("sending message")
-        const lastfive = body.data.transactions.slice(0, 5);
-        await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), JSON.stringify(lastfive))
+        const sliced = body.data.transactions.slice(0, 1);
+        const firstOne = sliced[0];
+        const message = `🥳New incoming message!\n\nTime: ${firstOne.now}\nFrom: ${firstOne.in_msg_src_addr_address_hex__friendly}\nAmount: ${firstOne.in_msg_value_grams}\nComment: ${firstOne.in_msg_comment}\n\nSee on DTon Explorer: https://dton.io/tx/${firstOne.hash}`;
+        await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), message)
         return new Response();
       } catch (err) {
         console.error(err);
