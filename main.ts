@@ -14,6 +14,9 @@ Deno.serve(async (req) => {
         console.error(err);
       }
     }
+    else if (url.pathname.slice(1) === "/notify") {
+      await bot.api.sendMessage(Deno.env.get("TELEGRAM_USERNAME"), "Hi!")
+    }
   }
   return new Response();
 });
