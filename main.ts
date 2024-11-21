@@ -25,7 +25,8 @@ Deno.serve(async (req) => {
         const body = await req.json();
         console.log(body)
         console.log("sending message")
-        await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), JSON.stringify(body))
+        const lastfive = body.data.transactions.slice(0, 5);
+        await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), JSON.stringify(lastfive))
         return new Response();
       } catch (err) {
         console.error(err);
