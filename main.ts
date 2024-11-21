@@ -9,6 +9,9 @@ Deno.serve(async (req) => {
     console.log("get post request")
     const url = new URL(req.url);
     console.log(req.url)
+    console.log("reading body")
+    const body = await req.json();
+    console.log(body)
     if (url.pathname.slice(1) === Deno.env.get("BOT_TOKEN")) {
       try {
         console.log(req)
@@ -21,9 +24,6 @@ Deno.serve(async (req) => {
       console.log("notify")
       try {
         console.log(req)
-        console.log("reading body")
-        const body = await req.json();
-        console.log(body)
         console.log("sending message")
         await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), "Hi!")
         return new Response();
