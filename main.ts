@@ -16,7 +16,7 @@ Deno.serve(async (req) => {
         console.error(err);
       }
     }
-    else if (url.pathname.slice(1) === "/notify") {
+    else if (url.pathname.slice(1) === "notify") {
       console.log("notify")
       try {
         console.log("sending message")
