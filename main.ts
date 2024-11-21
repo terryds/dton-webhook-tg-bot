@@ -11,6 +11,7 @@ Deno.serve(async (req) => {
     console.log(req.url)
     if (url.pathname.slice(1) === Deno.env.get("BOT_TOKEN")) {
       try {
+        console.log(req)
         return await handleUpdate(req);
       } catch (err) {
         console.error(err);
