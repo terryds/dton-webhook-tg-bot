@@ -22,7 +22,8 @@ Deno.serve(async (req) => {
       try {
         console.log(req)
         console.log("reading body")
-        console.log(req.body)
+        const body = await req.json();
+        console.log(body)
         console.log("sending message")
         await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), "Hi!")
         return new Response();
