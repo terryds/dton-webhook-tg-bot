@@ -20,8 +20,10 @@ Deno.serve(async (req) => {
     else if (url.pathname.slice(1) === "notify") {
       console.log("notify")
       try {
+        console.log(req)
         console.log("sending message")
-        return await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), "Hi!")
+        await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), "Hi!")
+        return new Response();
       } catch (err) {
         console.error(err);
       }
