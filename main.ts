@@ -21,7 +21,7 @@ Deno.serve(async (req) => {
       console.log("notify")
       try {
         console.log("sending message")
-        return await bot.api.sendMessage(Deno.env.get("TELEGRAM_USERNAME"), "Hi!")
+        return await bot.api.sendMessage(Deno.env.get("TELEGRAM_CHANNEL"), "Hi!")
       } catch (err) {
         console.error(err);
       }
